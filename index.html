@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Whisker World</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #fffafc; color: #444; overflow-x: hidden; }
+    header { background: #ffdde1; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+    header h1 { color: #ff6f91; font-size: 36px; animation: fadeDown 1.5s ease; }
+    nav a { margin: 0 15px; color: #444; text-decoration: none; font-weight: bold; transition: color 0.3s; }
+    nav a:hover { color: #ff6f91; }
+    section { padding: 60px 20px; text-align: center; }
+    #hero { background: linear-gradient(to bottom right, #ffe6f0, #d6f6ff); padding: 100px 20px; animation: fadeIn 2s ease; }
+    #hero h2 { font-size: 50px; color: #ff6f91; margin-bottom: 20px; }
+    #hero p { font-size: 20px; margin-bottom: 30px; }
+    .btn { background: #ff6f91; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; transition: 0.3s; }
+    .btn:hover { background: #ff4f73; transform: scale(1.05); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+    .card { background: #fff; border-radius: 15px; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+    .card:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+    .card img, .card video { width: 100%; border-radius: 15px; }
+    h2 { color: #ff6f91; margin-bottom: 20px; }
+    footer { background: #ffdde1; padding: 20px; text-align: center; color: #555; margin-top: 50px; }
+
+    /* Fun Facts */
+    .facts li { list-style: "🐾 "; margin: 10px 0; text-align: left; animation: fadeInUp 1s ease forwards; opacity: 0; }
+    .facts li:nth-child(1) { animation-delay: 0.3s; }
+    .facts li:nth-child(2) { animation-delay: 0.6s; }
+    .facts li:nth-child(3) { animation-delay: 0.9s; }
+    .facts li:nth-child(4) { animation-delay: 1.2s; }
+    .facts li:nth-child(5) { animation-delay: 1.5s; }
+
+    /* Modal */
+    .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+    .modal-content { background: white; margin: 5% auto; padding: 20px; border-radius: 20px; max-width: 700px; text-align: center; animation: scaleIn 0.5s ease; }
+    .modal img, .modal video { max-width: 100%; border-radius: 15px; }
+    .close { color: #ff6f91; float: right; font-size: 30px; font-weight: bold; cursor: pointer; }
+    .close:hover { color: #ff4f73; }
+
+    /* Animations */
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    @keyframes fadeDown { from {opacity: 0; transform: translateY(-20px);} to {opacity: 1; transform: translateY(0);} }
+    @keyframes fadeInUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
+    @keyframes scaleIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Whisker World 🐾</h1>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#facts">Fun Facts</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h2>Welcome to Whisker World</h2>
+    <p>A cozy corner of the internet dedicated to the cutest cats ever.</p>
+    <a href="#gallery" class="btn">See Cute Cats</a>
+  </section>
+
+  <section id="about">
+    <h2>About Cats</h2>
+    <p>Cats are independent yet affectionate companions loved worldwide. With their soft purrs, playful paws, and curious personalities, they bring joy and comfort to homes everywhere. Whether napping in sunny spots or chasing after strings, cats always find a way to steal our hearts.</p>
+  </section>
+
+  <section id="gallery">
+    <h2>Cat Gallery 🐱</h2>
+    <div class="grid">
+      <div class="card"><img src="https://placekitten.com/400/300" alt="Cute Cat" onclick="openModal(this)"></div>
+      <div class="card"><img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Cat Gif" onclick="openModal(this)"></div>
+      <div class="card"><video src="https://cdn.coverr.co/videos/coverr-cat-looking-at-the-camera-5176/1080p.mp4" autoplay muted loop onclick="openModal(this)"></video></div>
+      <div class="card"><img src="https://placekitten.com/401/301" alt="Cute Cat" onclick="openModal(this)"></div>
+      <div class="card"><video src="https://cdn.coverr.co/videos/coverr-cat-lying-down-while-looking-around-9280/1080p.mp4" autoplay muted loop onclick="openModal(this)"></video></div>
+    </div>
+  </section>
+
+  <section id="facts">
+    <h2>Fun Cat Facts 😺</h2>
+    <ul class="facts">
+      <li>Cats can rotate their ears 180 degrees.</li>
+      <li>A group of cats is called a clowder.</li>
+      <li>On average, cats sleep 12–16 hours a day.</li>
+      <li>Cats have whiskers on the backs of their front legs.</li>
+      <li>A cat’s nose is as unique as a human fingerprint.</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Want to share your cat pics with us? Send an email to <b>hello@whiskerworld.com</b> 🐾</p>
+  </section>
+
+  <footer>
+    <p>Made with ❤️ and 🐱 in Whisker World</p>
+  </footer>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(element) {
+      const modal = document.getElementById("myModal");
+      const body = document.getElementById("modal-body");
+      body.innerHTML = "";
+
+      if (element.tagName === "IMG") {
+        let img = document.createElement("img");
+        img.src = element.src;
+        body.appendChild(img);
+      } else if (element.tagName === "VIDEO") {
+        let video = document.createElement("video");
+        video.src = element.src;
+        video.controls = true;
+        video.autoplay = true;
+        body.appendChild(video);
+      }
+
+      modal.style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("myModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
